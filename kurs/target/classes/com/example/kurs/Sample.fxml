@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.HBox?>
+
+
+
+
+<GridPane fx:id="top_pane" styleClass="root" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.kurs.SampleController">
+
+    <rowConstraints>
+        <RowConstraints minHeight="30.0" prefHeight="30.0" />
+        <RowConstraints minHeight="30.0" prefHeight="30.0" />
+        <RowConstraints minHeight="30.0" prefHeight="30.0" />
+        <RowConstraints minHeight="30.0" prefHeight="30.0" />
+        <RowConstraints minHeight="30.0" prefHeight="30.0" />
+        <RowConstraints minHeight="30.0" prefHeight="30.0" />
+        <RowConstraints maxHeight="60.8" minHeight="10.0" prefHeight="60.8" />
+        <RowConstraints prefHeight="45.0" />
+
+
+    </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+        <ColumnConstraints minWidth="150.0" prefWidth="150.0" />
+
+    </columnConstraints>
+
+    <AnchorPane>
+        <Button text="Інформація" onAction="#showOptions"
+                AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="10.0"
+                prefWidth="500.0" prefHeight="50.0" styleClass="btnn"/>
+        <Button fx:id="OpenFileButton" text="Відкрити файл" onAction="#openFileAction"
+                AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="250.0"
+                prefWidth="200.0" prefHeight="50.0" styleClass="btnn"/>
+        <Button fx:id="ChangeColorAction" text="Змінити колір" onAction="#changeColorAction"
+                AnchorPane.topAnchor="20.0" AnchorPane.leftAnchor="490.0"
+                prefWidth="200.0" prefHeight="50.0" styleClass="btnn"/>
+
+    </AnchorPane>
+
+
+    <!-- Панель с настройками -->
+    <TitledPane animated="false" collapsible="false" prefHeight="170.0" prefWidth="700.0" text="Налаштування" GridPane.columnSpan="9" GridPane.rowIndex="7" GridPane.rowSpan="2">
+        <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="698.0" styleClass="settings-pane">
+                <children>
+                    <!-- Контейнер с дополнительными кнопками -->
+                    <VBox fx:id="optionsContainer" visible="false" layoutX="200.0" layoutY="100.0">
+                        <Button text="Інформація про програму" onAction="#showInfo"/>
+                    </VBox>
+
+                </children>
+            </AnchorPane>
+        </content>
+    </TitledPane>
+    <AnchorPane>
+        <Label fx:id="dateTimeLabel" layoutX="900.0" layoutY="10.0" styleClass="date-time-label"/>
+    </AnchorPane>
+
+    <children>
+
+
+        <!-- Панель с добавлением товара -->
+        <TitledPane animated="false" collapsible="false" prefHeight="170.0" prefWidth="700.0" text="Додавання товару в файл" GridPane.columnSpan="9" GridPane.rowIndex="1" GridPane.rowSpan="6">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="129.0" prefWidth="698.0" styleClass="add-product-pane">
+                    <children>
+                        <!-- Заголовки -->
+                        <Label layoutX="135.0" layoutY="14.0" text="Назва товару" styleClass="text"/>
+                        <Label layoutX="395.0" layoutY="14.0" text="Кількість" styleClass="text"/>
+                        <Label layoutX="635.0" layoutY="14.0" text="Роздрібна ціна" styleClass="text"/>
+                        <Label layoutX="885.0" layoutY="14.0" text="Оптова ціна" styleClass="text"/>
+                        <Label layoutX="1120.0" layoutY="14.0" text="Гарантійний термін" styleClass="text"/>
+
+                        <!-- Поля для ввода с подсказкой -->
+                        <TextField fx:id="ProductField" layoutX="100.0" layoutY="40.0" prefHeight="30.0" prefWidth="150.0" promptText="Введіть назву товару"/>
+                        <TextField fx:id="QuantityField" layoutX="350.0" layoutY="40.0" prefHeight="30.0" prefWidth="150.0" promptText="Кількість"/>
+                        <TextField fx:id="RetailPriceField" layoutX="600.0" layoutY="40.0" prefHeight="30.0" prefWidth="150.0" promptText="Роздрібна ціна"/>
+                        <TextField fx:id="WholesalePriceField" layoutX="850.0" layoutY="40.0" prefHeight="30.0" prefWidth="150.0" promptText="Оптова ціна"/>
+                        <TextField fx:id="WarrantyField" layoutX="1100.0" layoutY="40.0" prefHeight="30.0" prefWidth="150.0" promptText="Гарантійний термін"/>
+
+                        <!-- Кнопки -->
+                        <Button fx:id="BufferButton" layoutX="70.0" layoutY="78.0" mnemonicParsing="false" onAction="#addToBuffer" text="Додавання в буфер"/>
+                        <Button fx:id="AddToFileButton" layoutX="975.0" layoutY="78.0" mnemonicParsing="false" onAction="#saveToFile" text="Додавання в файл"/>
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+
+
+        <!-- Панель с выводом данных -->
+        <TitledPane animated="false" prefHeight="500.0" prefWidth="250.0" text="Виведення даних про продажі" GridPane.columnSpan="6" GridPane.rowIndex="7" GridPane.rowSpan="7" GridPane.columnIndex="0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="850.0" styleClass="add-product-pane">
+                    <children>
+                        <!-- Контейнер для отображения количества записей -->
+                        <VBox alignment="CENTER" spacing="20" layoutX="50" layoutY="50">
+                            <!-- Статичный текст "Кількість записів" и счетчик с количеством добавленных данных -->
+                            <HBox spacing="10">
+                                <Label text="Кількість записів:" prefHeight="30.0" prefWidth="120.0"/>
+                                <Label fx:id="numEntriesLabel" text="0" prefHeight="30.0" prefWidth="50.0" />
+                            </HBox>
+                            <!-- ScrollPane для отображения данных -->
+                            <ScrollPane prefHeight="300.0" prefWidth="350.0">
+                                <content>
+                                    <GridPane fx:id="DataGridPane" prefHeight="250.0" prefWidth="350.0"/>
+                                </content>
+                            </ScrollPane>
+
+                            <!-- Кнопка для отображения данных -->
+                            <Button onAction="#showData" text="Показати дані"/>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+
+
+        <!-- Панель с поиском и изменением -->
+        <TitledPane animated="false" prefHeight="500.0" prefWidth="250.0" text="Пошук та зміна" GridPane.columnSpan="3" GridPane.rowIndex="7" GridPane.rowSpan="7" GridPane.columnIndex="3">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="250.0" styleClass="add-product-pane">
+                    <children>
+                        <!-- Центрирование с помощью VBox -->
+                        <VBox alignment="CENTER" spacing="20" layoutX="50" layoutY="50">
+                            <Label text="Пошук та зміна" styleClass="text"/>
+                            <Label text="Введіть назву продукту" styleClass="text"/>
+                            <TextField fx:id="SearchField" prefHeight="30.0" prefWidth="100.0" promptText="Введіть назву продукту"/>
+                            <Button onAction="#searchProduct" text="Пошук" prefWidth="100.0"/>
+
+                            <Label text="Виберіть поле для зміни" styleClass="text"/>
+                            <ComboBox fx:id="comboBox" prefWidth="200.0"/>
+
+                            <Label text="Введіть нове значення" styleClass="text"/>
+                            <TextField fx:id="NewValueField" prefHeight="30.0" prefWidth="100.0" promptText="Введіть нове значення"/>
+
+                            <Button onAction="#updateProduct" text="Змінити" prefWidth="100.0"/>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+
+        <!-- Панель Видалення -->
+        <TitledPane animated="false" prefHeight="500.0" prefWidth="250.0" text="Видалення" GridPane.columnSpan="3" GridPane.rowIndex="7" GridPane.rowSpan="7" GridPane.columnIndex="6">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="450.0" prefWidth="250.0" styleClass="add-product-pane">
+                    <children>
+                        <!-- Центрирование с помощью <TextField fx:id="NumRecordsField" editable="false" />
+        <Label fx:id="ResultLabel" /> VBox -->
+                        <VBox alignment="CENTER" spacing="20" layoutX="50" layoutY="50">
+                            <Label text="Введіть назву продукту" styleClass="text"/>
+                            <TextField fx:id="DeleteProductField" prefHeight="30.0" prefWidth="100.0" promptText="Введіть назву продукту"/>
+                            <Button onAction="#deleteProduct" text="Видалити" prefWidth="100.0"/>
+
+                            <Button onAction="#clearFields" text="Очистити" prefWidth="100.0"/>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </content>
+        </TitledPane>
+
+    </children>
+</GridPane>
